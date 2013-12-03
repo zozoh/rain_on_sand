@@ -72,16 +72,19 @@ As you’ll see in Chapter 9, the index plays an important role in merges, allow
 ### Content-Addressable Names
 The Git object store is organized and implemented as a content-addressable storage system. Specifically, each object in the object store has a unique name produced by applying SHA1 to the contents of the object, yielding an SHA1 hash value. Since the complete contents of an object contribute to the hash value and since the hash value is believed to be effectively unique to that particular content, the SHA1 hash is a sufficient index or name for that object in the object database. Any tiny change to a file causes the SHA1 hash to change, causing the new version of the file to be indexed separately.
 SHA1 values are 160-bit values that are usually represented as a 40-digit hexadecimal number, such as `9da581d910c9c4ac93557ca4859e767f5caf5169`. Sometimes, during display, SHA1 values are abbreviated to a smaller, unique prefix. Git users speak of SHA1, hash code, and sometimes object ID interchangeably.
-	== Globally Unique Identifiers ==
-	An important characteristic of the SHA1 hash computation is that it 
-	always computes the same ID for identical content, regardless of where 
-	that content is. In other words, the same file content in different 
-	directories and even on different machines yields the exact same SHA1 
-	hash ID. Thus, the SHA1 hash ID of a file is a globally unique identifier.
-	A powerful corollary is that files or blobs of arbitrary size can be
-	compared for equality across the Internet by merely comparing their 
-	SHA1 identifiers.
-	
+
+> **Globally Unique Identifiers**
+> 
+> An important characteristic of the SHA1 hash computation is that it 
+> always computes the same ID for identical content, regardless of where 
+> that content is. In other words, the same file content in different 
+> directories and even on different machines yields the exact same SHA1 
+> hash ID. Thus, the SHA1 hash ID of a file is a globally unique identifier.
+> A powerful corollary is that files or blobs of arbitrary size can be
+> compared for equality across the Internet by merely comparing their 
+> SHA1 identifiers.
+> 
+
 ### Git Tracks Content
 
 It’s important to see Git as something more than a version control system: 
@@ -133,10 +136,12 @@ Indeed, Git treats the name of a file as a piece of data that is distinct
 from the contents of that file. 
 In this way, it separates “index” from “data” in the traditional database sense. 
 It may help to look at Table 4-1, which roughly compares Git to other familiar systems.
+
 *Table 4-1. Database comparison*
-System ￼ ￼ ￼ ￼           | Index mechanism            ￼ ￼ ￼| Data store
+
+System ￼ ￼ ￼ ￼       | Index mechanism         ￼ ￼ ￼| Data store
 ---------------------|------------------------------|--------------
-￼￼Traditional database | ISAM                         | Data records
+Traditional database | ISAM                         | Data records
 Unix filesystem      | Directories (/path/to/file)  | Blocks of data
 Git       | .git/objects/hash, tree object contents | Blob objects, tree objects
 
@@ -188,7 +193,10 @@ is built up and manipulated by various commands.
 
 
 ## Git Concepts at Work
-With some tenets out of the way, let’s see how all these concepts and components fit together in the repository itself. Let’s create a new repository and inspect the internal files and object store in much greater detail.
+With some tenets out of the way, let’s see how all these concepts and components fit together in the repository itself. 
+Let’s create a new repository and inspect the internal files 
+and object store in much greater detail.
+
 ### Inside the .git directory
 
 To begin, initialize an empty repository using `git init` and then run `find` to reveal what’s created:
@@ -224,9 +232,15 @@ To begin, initialize an empty repository using `git init` and then run `find` to
 	./.git/info
 	./.git/info/exclude
 
-As you can see, *.git* contains a lot of stuff. All of the files are based on a template directory that you can adjust, if you so choose. Depending on the version of Git you are using, your actual manifest may look a little different.For example, older versions of Git do not use a *.sample* suffix on 
-the *.git/hooks* files. 
-In general, you don’t have to view or manipulate the files in *.git*. These “hidden” files are considered part of Git’s plumbing, or configuration. Git has a small set of plumbing commands to manipulate these hidden files, but you will rarely use them.
+As you can see, *.git* contains a lot of stuff. 
+All of the files are based on a template directory that you can adjust, 
+if you so choose. Depending on the version of Git you are using, 
+your actual manifest may look a little different.For example, 
+older versions of Git do not use a *.sample* suffix on the *.git/hooks* files. 
+In general, you don’t have to view or manipulate the files in *.git*. 
+These “hidden” files are considered part of Git’s plumbing, or configuration. 
+Git has a small set of plumbing commands to manipulate these hidden files, 
+but you will rarely use them.
 Initially, the *.git/objects* directory (the directory for all of Git’s objects) is empty, except for a few placeholders:
 
 	$ find .git/objects
@@ -251,32 +265,47 @@ If you typed “hello world” exactly as it appears here (with no changes to sp
 All this looks mysterious. But it’s not, as the following sections explain.
 
 ### Objects, Hashes, and Blobs
-When it creates an object for hello.txt, Git doesn’t care that the filename is hello.txt. Git cares only about what’s inside the file: the sequence of 12 bytes that represent “hello world” and the terminating newline (the same blob created earlier). Git performs a few operations on this blob, calculates its SHA1 hash, and enters it into the object store as a file named after the hexadecimal representation of the hash.
 
-	How Do We Know a SHA1 Hash Is Unique?
-	
-	There is an extremely slim chance that two different blobs yield the same SHA1 hash. 
-	When this happens, it is called a collision. 
-	However, SHA1 collision is so unlikely that you can safely bank on 
-	it never interfering with our use of Git.
-	
-	SHA1 is a cryptographically secure hash. 
-	Until recently there was no known way (better than blind luck) 
-	for a user to cause a collision on purpose. 
-	But could a collision happen at random? Let’s see.
-	
-	With 160 bits, you have 2160, or about 1048 (1 with 48 zeros after it), 
-	possible SHA1 hashes. 
-	That number is just incomprehensibly huge. 
-	Even if you hired a trillion people to produce a trillion new unique 
-	blobs per second for a trillion years, 
-	you would still only have about 1043 blobs.
-	
-	If you hashed 280 random blobs, you might find a collision. 
-	
-	Don’t trust us. Go read Bruce Schneier.
+When it creates an object for *hello.txt*, 
+Git doesn’t care that the filename is *hello.txt*. 
+Git cares only about what’s inside the file: 
+the sequence of 12 bytes that represent “hello world” 
+and the terminating newline (the same blob created earlier). 
+Git performs a few operations on this blob, 
+calculates its SHA1 hash, 
+and enters it into the object store as a file 
+named after the hexadecimal representation of the hash.
 
-The hash in this case is 3b18e512dba79e4c8300dd08aeb37f8e728b8dad. The 160 bits of an SHA1 hash correspond to 20 bytes, which takes 40 bytes of hexadecimal to display, so the content is stored as .git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad. Git inserts a / after the first two digits to improve filesystem efficiency. (Some filesystems slow down if you put too many files in the same directory; making the first byte of the SHA1 into a directory is an easy way to create a fixed, 256-way partitioning of the namespace for all possible objects with an even distribution.)
+> **How Do We Know a SHA1 Hash Is Unique?**
+> 
+> There is an extremely slim chance that two different blobs yield the 
+> same SHA1 hash. When this happens, it is called a collision. 
+> However, SHA1 collision is so unlikely that you can safely bank on 
+> it never interfering with our use of Git.
+> 
+> SHA1 is a cryptographically secure hash. 
+> Until recently there was no known way (better than blind luck) 
+> for a user to cause a collision on purpose. 
+> But could a collision happen at random? Let’s see.
+> 
+> With 160 bits, you have 2160, or about 1048 (1 with 48 zeros after it), 
+> possible SHA1 hashes. 
+> That number is just incomprehensibly huge. 
+> Even if you hired a trillion people to produce a trillion new unique 
+> blobs per second for a trillion years, 
+> you would still only have about 1043 blobs.
+> 
+> If you hashed 280 random blobs, you might find a collision. 
+> 
+> Don’t trust us. Go read Bruce Schneier.
+> 
+
+The hash in this case is *3b18e512dba79e4c8300dd08aeb37f8e728b8dad*. 
+The 160 bits of an SHA1 hash correspond to 20 bytes, 
+which takes 40 bytes of hexadecimal to display, 
+so the content is stored as 
+`.git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad`. 
+Git inserts a `/` after the first two digits to improve filesystem efficiency. (Some filesystems slow down if you put too many files in the same directory; making the first byte of the SHA1 into a directory is an easy way to create a fixed, 256-way partitioning of the namespace for all possible objects with an even distribution.)
 
 To show that Git really hasn’t done very much with the content in the file (it’s still the same comforting “hello world”), you can use the hash to pull it back out of the object store any time you want:
 
@@ -284,24 +313,92 @@ To show that Git really hasn’t done very much with the content in the file (it
 	hello world
 
 > Git also knows that 40 characters is a bit chancy to type by hand, 
-> so Git provides a command to look up objects by a unique prefix of the object hash:
+> so Git provides a command to look up objects 
+> by a unique prefix of the object hash:
+
 	$ git rev-parse 3b18e512d 
 	3b18e512dba79e4c8300dd08aeb37f8e728b8dad
 
+### Files and Trees
 
+Now that the “hello world” blob is safely ensconced in the object store, what happens to its filename? Git wouldn’t be very useful if it couldn’t find files by name.
 
+As mentioned earlier, 
+Git tracks the pathnames of files through another kind of object 
+called a *tree*. When you use **git add**, 
+Git creates an object for the contents of each file you add, 
+but it doesn’t create an object for your *tree* right away. 
+Instead, it updates the *index*. 
+The *index* is found in *.git/index* and keeps track of file pathnames 
+and corresponding blobs. 
+Each time you run commands such as 
+**git add**, **git rm**, or **git mv**, 
+Git updates the index with the new pathname and blob information.
 
+Whenever you want, you can create a *tree* object from your current index by capturing a snapshot of its current information with the low-level git write-tree command.
 
+At the moment, the index contains exactly one file, *hello.txt*:
 
+	$ git ls-files -s
+	100644 3b18e512dba79e4c8300dd08aeb37f8e728b8dad 0 hello.txt
 
+Here you can see the association of the file hello.txt and the blob 3b18e5.... 
 
+Next, let’s capture the index state and save it to a tree object:
 
+	$ git write-tree 68aba62e560c0ebc3396e8ae9335232cd93a3f60
+	$ find .git/objects
+	.git/objects
+	.git/objects/68 .git/objects/68/aba62e560c0ebc3396e8ae9335232cd93a3f60 
+	.git/objects/pack
+	.git/objects/3b .git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad 
+	.git/objects/info
 
+Now there are two objects, the “hello world” object at 3b18e5 and a new one, the tree object, at 68aba6. As you can see, the SHA1 object name corresponds exactly to the subdirectory and filename in .git/objects.
 
+But what does a tree look like? Because it’s an object, just like the blob, you can use the same low-level command to view it:
 
+	$ git cat-file -p 68aba6
+	100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad hello.txt
 
+The contents of the object should be easy to interpret. The first number, 100644, rep- resents the file attributes of the object in octal, which should be familiar to anyone who has used the Unix chmod command. Here 3b18e5 is the object name of the “hello world” blob, and hello.txt is the name associated with that blob.
 
+It is now easy to see that the tree object has captured the information that was in the index when you ran git ls-files -s.
 
+### A Note on Git’s Use of SHA1
+
+Before peering at the contents of the tree object in more detail, let’s check out an im- portant feature of SHA1 hashes:
+
+	$ git write-tree
+	68aba62e560c0ebc3396e8ae9335232cd93a3f60
+	
+	$ git write-tree
+	68aba62e560c0ebc3396e8ae9335232cd93a3f60
+	
+	$ git write-tree
+	68aba62e560c0ebc3396e8ae9335232cd93a3f60
+
+Every time you compute another tree object for the same index, the SHA1 hash remains exactly the same. Git doesn’t need to recreate a new tree object. If you’re following these steps at the computer, you should be seeing exactly the same SHA1 hashes as the ones published in this book.
+
+In this sense, the hash function is a true function in the mathematical sense: for a given input, it always produces the same output. Such a hash function is sometimes called a digest to emphasize that it serves as a sort of summary of the hashed object. Of course, any hash function, even the lowly parity bit, has this property.
+
+That’s extremely important. For example, if you create the exact same content as an- other developer, regardless of where or when or how both of you work, an identical hash is proof enough that the full content is identical, too. In fact, Git treats them as identical.
+
+But hold on a second—aren’t SHA1 hashes unique? What happened to the trillions of people with trillions of blobs per second who never produce a single collision? This is a common source of confusion among new Git users. So read on carefully, because if you can understand this distinction, everything else in this chapter is easy.
+
+Identical SHA1 hashes in this case do not count as a collision. It would be a collision only if two different objects produced the same hash. Here, you created two separate instances of the very same content, and the same content always has the same hash.
+
+Git depends on another consequence of the SHA1 hash function: it doesn’t matter how you got a tree called 68aba62e560c0ebc3396e8ae9335232cd93a3f60. If you have it, you can be extremely confident it is the same tree object another reader of this book has. Bob might have created the tree by combining commits A and B from Jennie and commit C from Sergey, whereas you got commit A from Sue and an update from Lakshmi that combines commits B and C. The results are the same, and this facilitates distributed development.
+
+If you look for object 68aba62e560c0ebc3396e8ae9335232cd93a3f60 and can find it, then you can be confident that you are looking at precisely the same data from which the hash was created (because SHA1 is a cryptographic hash).
+
+The converse is also true: if you don’t find an object with a specific hash in your object store, you can be confident that you do not hold a copy of that exact object.
+
+Thus, you can determine whether your object store does or does not have a particular object even though you know nothing about its (potentially very large) contents. The hash thus serves as a reliable “label” or name for the object.
+
+But Git also relies on something stronger than that conclusion, too. Consider the most recent commit (or its associated tree object). Since it contains, as part of its content, the hash of its parent commits and of its tree, and since that in turn contains the hash of all of its subtrees and blobs, recursively through the whole data structure, it follows by induction that the hash of the original commit uniquely identifies the state of the whole data structure rooted at that commit.
+
+Finally, the implications of my claim in the previous paragraph lead to a powerful use of the hash function: it provides an efficient way to compare two objects, even two very large and complex data structures,† without transmitting either in full.
 
 
 
