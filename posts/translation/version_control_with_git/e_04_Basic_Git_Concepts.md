@@ -321,15 +321,17 @@ To show that Git really hasn’t done very much with the content in the file (it
 
 ### Files and Trees
 
-Now that the “hello world” blob is safely ensconced in the object store, what happens to its filename? Git wouldn’t be very useful if it couldn’t find files by name.
+Now that the “hello world” blob is safely ensconced in the object store, 
+what happens to its filename? 
+Git wouldn’t be very useful if it couldn’t find files by name.
 
 As mentioned earlier, 
 Git tracks the pathnames of files through another kind of object 
 called a *tree*. When you use **git add**, 
 Git creates an object for the contents of each file you add, 
 but it doesn’t create an object for your *tree* right away. 
-Instead, it updates the *index*. 
-The *index* is found in *.git/index* and keeps track of file pathnames 
+Instead, it updates the index. 
+The index is found in *.git/index* and keeps track of file pathnames 
 and corresponding blobs. 
 Each time you run commands such as 
 **git add**, **git rm**, or **git mv**, 
@@ -342,9 +344,10 @@ At the moment, the index contains exactly one file, *hello.txt*:
 	$ git ls-files -s
 	100644 3b18e512dba79e4c8300dd08aeb37f8e728b8dad 0 hello.txt
 
-Here you can see the association of the file hello.txt and the blob 3b18e5.... 
+Here you can see the association of the file *hello.txt* 
+and the blob *3b18e5...*. 
 
-Next, let’s capture the index state and save it to a tree object:
+Next, let’s capture the index state and save it to a *tree* object:
 
 	$ git write-tree 68aba62e560c0ebc3396e8ae9335232cd93a3f60
 	$ find .git/objects
@@ -354,16 +357,25 @@ Next, let’s capture the index state and save it to a tree object:
 	.git/objects/3b .git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad 
 	.git/objects/info
 
-Now there are two objects, the “hello world” object at 3b18e5 and a new one, the tree object, at 68aba6. As you can see, the SHA1 object name corresponds exactly to the subdirectory and filename in .git/objects.
+Now there are two objects, the “hello world” object at *3b18e5* and a new one, the *tree* object, at *68aba6*. 
+As you can see, the SHA1 object name corresponds exactly 
+to the subdirectory and filename in *.git/objects*.
 
-But what does a tree look like? Because it’s an object, just like the blob, you can use the same low-level command to view it:
+But what does a *tree* look like? 
+Because it’s an object, just like the blob, 
+you can use the same low-level command to view it:
 
 	$ git cat-file -p 68aba6
 	100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad hello.txt
 
-The contents of the object should be easy to interpret. The first number, 100644, rep- resents the file attributes of the object in octal, which should be familiar to anyone who has used the Unix chmod command. Here 3b18e5 is the object name of the “hello world” blob, and hello.txt is the name associated with that blob.
+The contents of the object should be easy to interpret. 
+The first number, *100644*, 
+represents the file attributes of the object in octal, 
+which should be familiar to anyone who has used the Unix **chmod** command. 
+Here *3b18e5* is the object name of the “hello world” blob, 
+and *hello.txt* is the name associated with that blob.
 
-It is now easy to see that the tree object has captured the information that was in the index when you ran git ls-files -s.
+It is now easy to see that the *tree* object has captured the information that was in the index when you ran **git ls-files -s**.
 
 ### A Note on Git’s Use of SHA1
 

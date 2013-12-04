@@ -336,10 +336,55 @@ Git 在头两个数字后面插入了 `/` 以便提高文件系统的效率。
 	$ git rev-parse 3b18e512d 
 	3b18e512dba79e4c8300dd08aeb37f8e728b8dad
 
+### 文件和树
 
+现在这个 "hello world" 的 blob 已经妥妥的待在对象存储里了，
+那么它的文件内容呢？
+如果不能按照名字找到文件，Git 也没啥用处了。
 
+就像我们早先提到一样，Git 通过另外一种叫 *tree * 的对象跟踪文件的路径名。
+当你使用 **git add**， Git 为每个你添加的文件内容创建一个对象，
+但是这不是为你的 *tree* 创建一个对象的时候。相反的，它更新索引。
+索引可以在 *.git/index* 下找到，它追踪了文件路径名与相应的 blob。
+每当你运行诸如 **git add**, **git rm**, or **git mv** 等命令的时候，
+Git 会用新的路径名和 blob 信息更新索引。
 
+任何时候只要你想，你就能通过底层的 Git 树写入命令得到一个当前索引信息快照，
+从而创建一个 *tree* 对象。
 
+此刻，索引仅包括一个文件，*hello.txt*:
+
+	$ git ls-files -s
+	100644 3b18e512dba79e4c8300dd08aeb37f8e728b8dad 0 hello.txt
+
+你看到文件 *hello.txt* 与 blob *3b18e5....* 直接的关联。
+
+下面，让我们捕获索引的状态并把它存到一个 *tree* 对象里：
+
+	$ git write-tree 68aba62e560c0ebc3396e8ae9335232cd93a3f60
+	$ find .git/objects
+	.git/objects
+	.git/objects/68 .git/objects/68/aba62e560c0ebc3396e8ae9335232cd93a3f60 
+	.git/objects/pack
+	.git/objects/3b .git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad 
+	.git/objects/info
+
+现在有了两个对象，"hello world" 对象是 *3b18e5*，
+以及一个新的 *tree* 对象 *68aba6*。
+如你所知，SHA1 对象名称与 *.git/objects* 里的子目录和文件名完全对应。
+
+但是一个 *tree* 看起来到底想啥涅？由于它是一个对象，就像 blob，
+你可以用同样的底层命令查看它：
+
+	$ git cat-file -p 68aba6
+	100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad hello.txt
+
+这个对象的内容很容易解释。第一个数字，*100644*，用八进制表示这个对象的文件属性，
+任何用过 Unix **chmod** 命令的同学都会很熟悉。
+*3b18e5* 是 "hello world" blob 的对象名，
+*hello.txt* 是与这个 blob 关联的名称。
+
+当你执行 **git ls-files -s** 时，很容易看到 *tree* 对象获得了索引里的信息。
 
 
 
