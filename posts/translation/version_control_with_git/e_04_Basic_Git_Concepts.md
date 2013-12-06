@@ -375,11 +375,12 @@ which should be familiar to anyone who has used the Unix **chmod** command.
 Here *3b18e5* is the object name of the “hello world” blob, 
 and *hello.txt* is the name associated with that blob.
 
-It is now easy to see that the *tree* object has captured the information that was in the index when you ran **git ls-files -s**.
+It is now easy to see that the *tree* object has captured the information that was in the index when you run **git ls-files -s**.
 
 ### A Note on Git’s Use of SHA1
 
-Before peering at the contents of the tree object in more detail, let’s check out an im- portant feature of SHA1 hashes:
+Before peering at the contents of the *tree* object in more detail, 
+let’s check out an important feature of SHA1 hashes:
 
 	$ git write-tree
 	68aba62e560c0ebc3396e8ae9335232cd93a3f60
@@ -390,17 +391,46 @@ Before peering at the contents of the tree object in more detail, let’s check 
 	$ git write-tree
 	68aba62e560c0ebc3396e8ae9335232cd93a3f60
 
-Every time you compute another tree object for the same index, the SHA1 hash remains exactly the same. Git doesn’t need to recreate a new tree object. If you’re following these steps at the computer, you should be seeing exactly the same SHA1 hashes as the ones published in this book.
+Every time you compute another *tree* object for the same index, 
+the SHA1 hash remains exactly the same. 
+Git doesn’t need to recreate a new *tree* object. 
+If you’re following these steps at the computer, 
+you should be seeing exactly the same SHA1 hashes 
+as the ones published in this book.
 
-In this sense, the hash function is a true function in the mathematical sense: for a given input, it always produces the same output. Such a hash function is sometimes called a digest to emphasize that it serves as a sort of summary of the hashed object. Of course, any hash function, even the lowly parity bit, has this property.
+In this sense, the hash function is a true function 
+in the mathematical sense: 
+for a given input, it always produces the same output. 
+Such a hash function is sometimes called a **digest** to emphasize 
+that it serves as a sort of summary of the hashed object. 
+Of course, any hash function, 
+even the lowly parity bit, has this property.
 
-That’s extremely important. For example, if you create the exact same content as an- other developer, regardless of where or when or how both of you work, an identical hash is proof enough that the full content is identical, too. In fact, Git treats them as identical.
+That’s extremely important. 
+For example, if you create the exact same content as an other developer, regardless of where or when or how both of you work, 
+an identical hash is proof enough that the full content is identical, too. 
+In fact, Git treats them as identical.
 
-But hold on a second—aren’t SHA1 hashes unique? What happened to the trillions of people with trillions of blobs per second who never produce a single collision? This is a common source of confusion among new Git users. So read on carefully, because if you can understand this distinction, everything else in this chapter is easy.
+But hold on a second aren’t SHA1 hashes unique? 
+What happened to the trillions of people with trillions of blobs per second who never produce a single collision? 
+This is a common source of confusion among new Git users. 
+So read on carefully, because if you can understand this distinction, 
+everything else in this chapter is easy.
 
-Identical SHA1 hashes in this case do not count as a collision. It would be a collision only if two different objects produced the same hash. Here, you created two separate instances of the very same content, and the same content always has the same hash.
+Identical SHA1 hashes in this case do not count as a collision. 
+It would be a collision only if two different objects produced the same hash. Here, you created two separate instances of the very same content, 
+and the same content always has the same hash.
 
-Git depends on another consequence of the SHA1 hash function: it doesn’t matter how you got a tree called 68aba62e560c0ebc3396e8ae9335232cd93a3f60. If you have it, you can be extremely confident it is the same tree object another reader of this book has. Bob might have created the tree by combining commits A and B from Jennie and commit C from Sergey, whereas you got commit A from Sue and an update from Lakshmi that combines commits B and C. The results are the same, and this facilitates distributed development.
+Git depends on another consequence of the SHA1 hash function: 
+it doesn’t matter how you got a tree called 
+*68aba62e560c0ebc3396e8ae9335232cd93a3f60*. 
+If you have it, you can be extremely confident it is the same tree object
+another reader of this book has. 
+Bob might have created the tree by combining commits A and B 
+from Jennie and commit C from Sergey, 
+whereas you got commit A from Sue and an update from Lakshmi 
+that combines commits B and C. 
+The results are the same, and this facilitates distributed development.
 
 If you look for object 68aba62e560c0ebc3396e8ae9335232cd93a3f60 and can find it, then you can be confident that you are looking at precisely the same data from which the hash was created (because SHA1 is a cryptographic hash).
 
