@@ -432,15 +432,29 @@ whereas you got commit A from Sue and an update from Lakshmi
 that combines commits B and C. 
 The results are the same, and this facilitates distributed development.
 
-If you look for object 68aba62e560c0ebc3396e8ae9335232cd93a3f60 and can find it, then you can be confident that you are looking at precisely the same data from which the hash was created (because SHA1 is a cryptographic hash).
+If you look for object *68aba62e560c0ebc3396e8ae9335232cd93a3f60* 
+and can find it, 
+then you can be confident that you are looking at precisely the same data 
+from which the hash was created (because SHA1 is a cryptographic hash).
 
 The converse is also true: if you don’t find an object with a specific hash in your object store, you can be confident that you do not hold a copy of that exact object.
 
 Thus, you can determine whether your object store does or does not have a particular object even though you know nothing about its (potentially very large) contents. The hash thus serves as a reliable “label” or name for the object.
 
-But Git also relies on something stronger than that conclusion, too. Consider the most recent commit (or its associated tree object). Since it contains, as part of its content, the hash of its parent commits and of its tree, and since that in turn contains the hash of all of its subtrees and blobs, recursively through the whole data structure, it follows by induction that the hash of the original commit uniquely identifies the state of the whole data structure rooted at that commit.
+But Git also relies on something stronger than that conclusion, too. 
+Consider the most recent commit (or its associated *tree* object). 
+Since it contains, as part of its content, 
+the hash of its parent commits and of its tree, 
+and since that in turn contains the hash of all of its subtrees and blobs, 
+recursively through the whole data structure, 
+it follows by induction that the hash of the original commit uniquely 
+identifies the state of the whole data structure rooted at that commit.
 
-Finally, the implications of my claim in the previous paragraph lead to a powerful use of the hash function: it provides an efficient way to compare two objects, even two very large and complex data structures,† without transmitting either in full.
+Finally, the implications of my claim in the previous paragraph 
+lead to a powerful use of the hash function: 
+it provides an efficient way to compare two objects, 
+even two very large and complex data structures,
+without transmitting either in full.
 
 
 
