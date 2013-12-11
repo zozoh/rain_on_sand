@@ -456,6 +456,202 @@ it provides an efficient way to compare two objects,
 even two very large and complex data structures,
 without transmitting either in full.
 
+### Tree Hierarchies
+
+It’s nice to have information regarding a single file, as was shown in the previous section, but projects contain complex, deeply nested directories that are refactored and moved around over time. Let’s see how Git handles this by creating a new subdirectory that contains an identical copy of the hello.txt file:
+
+	$ pwd
+	/tmp/hello
+	$ mkdir subdir
+	$ cp hello.txt subdir/
+	$ git add subdir/hello.txt
+	$ git write-tree 
+	492413269336d21fac079d4a4672e55d5d2147ac
+
+	$ git cat-file -p 4924132693
+	100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad hello.txt
+	040000 tree 68aba62e560c0ebc3396e8ae9335232cd93a3f60 subdir
+
+The new top-level tree contains two items: 
+the original *hello.txt* file as well as the new *subdir* directory, 
+which is of type *tree* instead of *blob*.
+
+Notice anything unusual? Look closer at the object name of *subdir*. 
+It’s your old friend, *68aba62e560c0ebc3396e8ae9335232cd93a3f60*!
+
+What just happened? 
+The new tree for *subdir* contains only one file, *hello.txt*, 
+and that file contains the same old “hello world” content. 
+So the *subdir* tree is exactly the same as the older, top-level tree! 
+And of course it has the same SHA1 object name as before.
+
+Let’s look at the *.git/objects* directory 
+and see what this most recent change affected:
+
+	$ find .git/objects
+	.git/objects
+	.git/objects/49 .git/objects/49/2413269336d21fac079d4a4672e55d5d2147ac 
+	.git/objects/68 .git/objects/68/aba62e560c0ebc3396e8ae9335232cd93a3f60 
+	.git/objects/pack
+	.git/objects/3b .git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad 
+	.git/objects/info
+
+There are still only three unique objects: 
+a *blob* containing “hello world”; 
+a tree containing *hello.txt*, 
+which contains the text “hello world” plus a newline; 
+and a second tree that contains another reference to *hello.txt* 
+along with the first tree.
+
+### Commits
+
+The next object to discuss is the *commit*. 
+Now that *hello.txt* has been added with **git add** 
+and the tree object has been produced with git write-tree, 
+you can create a *commit* object using low-level commands like this:
+
+	$ echo -n "Commit a file that says hello\n" \
+		| git commit-tree 492413269336d21fac079d4a4672e55d5d2147ac
+	3ede4622cc241bcb09683af36360e7413b9ddf6c
+
+And it will look something like this:
+
+	$git cat-file -p 3ede462
+	author Jon Loeliger <jdl@example.com> 1220233277 -0500 committer Jon Loeliger <jdl@example.com> 1220233277 -0500
+
+	Commit a file that says hello
+
+If you’re following along on your computer, 
+you probably found that the commit object you generated does not 
+have the same name as the one in this book. 
+If you’ve understood everything so far, 
+the reason for that should be obvious: 
+it’s not the same commit. 
+The commit contains your name and the time you made the commit, 
+so of course it is different, however subtly. 
+On the other hand, your commit does have the same tree. 
+This is why commit objects are separate from their tree objects: 
+different commits often refer to exactly the same tree. 
+When that happens, Git is smart enough to transfer around 
+only the new commit object which is tiny instead of 
+the *tree* and *blob* objects, which are probably much larger.
+
+In real life, you can (and should!) 
+skip the low-level **git write-tree** and **git commit-tree** steps 
+and just use the **git commit** command. 
+You don’t need to remember all those plumbing commands 
+to be a perfectly happy Git user.
+
+A basic commit object is fairly simple, 
+and it’s the last ingredient required for a real revision control system. 
+The commit object just shown is the simplest possible one, containing:
+
+* The name of a tree object that actually identifies the associated files
+* The name of the person who composed the new version (the author) and the time when it was composed
+* The name of the person who placed the new version into the repository (the committer) and the time when it was committed
+* A description of the reason for this revision (the commit message)
+
+By default, the author and committer are the same; 
+there are a few situations where they’re different.
+
+> You can use the command git show --pretty=fuller 
+> to see additional details about a given commit.
+
+Commit objects are also stored in a graph structure, 
+although it’s completely different from the structures used by tree objects.
+When you make a new commit, you can give it one or more parent commits. 
+By following back through the chain of parents, 
+you can discover the history of your project. 
+More details about commits and the commit graph are given in Chapter 6.
+
+### Tags
+
+Finally, the last object Git manages is the *tag*. 
+Although Git implements only one kind of tag object, 
+there are two basic tag types, 
+usually called *lightweight* and *annotated*.
+
+Lightweight tags are simply references to a commit object 
+and are usually considered private to a repository. 
+These tags do not create a permanent object in the object store. 
+An *annotated* tag is more substantial and creates an object. 
+It contains a message, supplied by you, 
+and can be digitally signed using a *GnuPG key*, 
+according to *RFC4880*.
+
+Git treats both *lightweight* and *annotated* tag names equivalently 
+for the purposes of naming a commit. 
+However, by default, many Git commands work only on annotated tags, 
+as they are considered “permanent” objects.
+
+You create an *annotated*, unsigned tag with a message 
+on a commit using the **git tag** command:
+
+	$ git tag -m"Tag version 1.0" V1.0 3ede462
+
+You can see the tag object via the **git cat-file -p** command, 
+but what is the SHA1 of the tag object? 
+To find it, use the tip from “Objects, Hashes, and Blobs” on page 37.
+
+	$ git rev-parse V1.0 
+	6b608c1093943939ae78348117dd18b1ba151c6a
+
+	$ git cat-file -p 6b608c
+	object 3ede4622cc241bcb09683af36360e7413b9ddf6c
+	type commit
+	tag V1.0
+	tagger Jon Loeliger <jdl@example.com> Sun Oct 26 17:07:15 2008 -0500
+	
+	Tag version 1.0
+
+In addition to the log message and author information, 
+the tag refers to the commit object *3ede462*. 
+Usually, Git tags a particular commit as named by some branch. 
+Note that this behavior is notably different from that of other VCSs.
+
+Git usually tags a commit object, which points to a tree object, 
+which encompasses the total state of the entire hierarchy of files 
+and directories within your repository.
+
+Recall from Figure 4-1 that the *V1.0* tag points to the commit named *1492*,
+which in turn points to a tree (*8675309*) that spans multiple files. 
+Thus, the tag simultaneously applies to all files of that tree.
+
+This is unlike CVS, for example, 
+which will apply a tag to each individual file 
+and then rely on the collection of all those tagged files 
+to reconstitute a whole tagged revision. 
+And whereas CVS lets you move the tag on an individual file, 
+Git requires a new commit, encompassing the file state change, 
+onto which the tag will be moved.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
