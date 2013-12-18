@@ -29,6 +29,7 @@ And the voice was gone.
 Walter B. Jehovah was alone in the void and ther was only one thing he could do. He created the heaven and the earth.
 
 It took him seven days.
+
 -----------------------------------------------
 * 中文 [《唯者》](e_03_唯者.md)
 
