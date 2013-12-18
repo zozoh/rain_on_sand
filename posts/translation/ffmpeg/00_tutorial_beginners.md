@@ -1,7 +1,7 @@
 A FFmpeg Tutorial For Beginners
 ============
 
-> [Original Page][src], [Chinese][00_初学者教程.md]
+> [Original Page][src], [Chinese](00_初学者教程.md)
 
 ![][logo]
 
