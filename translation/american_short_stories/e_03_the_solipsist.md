@@ -1,5 +1,6 @@
-The Solipsist
-=====
+---
+title: The Solipsist
+---
 
 > *Fredirc Brown* was perhaps best known in America for his mystery and science-fiction tales. But he also wrote oddly amusing and thought-provoking tales like this one. The Second sentence of this brief fable is a pretty good dictionary definition of a ‘solipsist’.
 
