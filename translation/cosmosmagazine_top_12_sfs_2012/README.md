@@ -1,9 +1,3 @@
----
-tags:
-- Novel
-- Science Fiction
----
-
 # [Top 12 science fiction short stories of 2012][link0]
 
 From suicidal robots to genetically engineered athletes on the run, these are the most popular stories from COSMOS Online's weekly science fiction.

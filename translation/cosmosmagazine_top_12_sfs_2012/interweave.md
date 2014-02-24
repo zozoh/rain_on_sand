@@ -1,10 +1,10 @@
 ---
+title: 内波
 tags:
-- Novel
-- Science Fiction
+- 翻译
+- 科幻小说
 ---
 
-# 内波
 > By [Christopher K. Miller][link0]
 
 > 在完全认知和认知情绪状态管理上，我们还有很长的路要走。

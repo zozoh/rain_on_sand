@@ -1,5 +1,10 @@
-A FFmpeg Tutorial For Beginners
-============
+---
+title: A FFmpeg Tutorial For Beginners
+tags:
+- 翻译
+- ffmpeg
+- 教程
+---
 
 > [Original Page][src], [Chinese](00_初学者教程.md)
 
@@ -261,13 +266,13 @@ Now, lets up all this knowledge to convert a single high quality file you have s
 
 We will use the following command to make this happen.
 
-    [shredder12]$ ffmpeg -i  recorded_file.mov  \
-                         -ar 22050  \
-                         -ab 32k  \
-                         -r 25 \ 
-                         -s 480x360  \
-                         -vcodec flv \
-                         -qscale 9.5 \
+    [shredder12]$ ffmpeg -i  recorded_file.mov  \ 
+                         -ar 22050  \ 
+                         -ab 32k  \ 
+                         -r 25 \  
+                         -s 480x360  \ 
+                         -vcodec flv \ 
+                         -qscale 9.5 \ 
                          output_file.avi
 
 ar is used to set the audio frequency of the output file. The default value is 41000Hz but we are using a low value to produce a low flv quality file.
@@ -288,11 +293,11 @@ Sometime you might want a specific resolution for a video(ofcourse, smaller than
 
 Suppose, we have a video of resolution 1920x1200 and we want to convert into a video of resolution 1200x1024. This is how you will do it using ffmpeg.
 
-    [shredder12]$ ffmpeg -i inputfile.avi \
-                         -croptop 88 \
-                         -cropbottom 88 \
-                         -cropleft 360 \
-                         -cropright 360 \
+    [shredder12]$ ffmpeg -i inputfile.avi \ 
+                         -croptop 88 \ 
+                         -cropbottom 88 \ 
+                         -cropleft 360 \ 
+                         -cropright 360 \ 
                          outputfile.avi
 
 Just take a look at the original resolution the width of the video was 1920 pixels and we want it to be 1200, the difference is 720 so we removed 360 pixels each from right and left. Similarly, we did the same for the height.
@@ -315,10 +320,10 @@ Now, let us see what all these different flags in the above command means.
 
 We can also define the image size of the extracted images using the -s flag. The default option is to use the image size same as the video resolution.
 
-    [shredder12]$ ffmpeg -i inputfile.avi \
-                         -r 1 \
-                         -s 4cif \
-                         -f image2 \
+    [shredder12]$ ffmpeg -i inputfile.avi \ 
+                         -r 1 \ 
+                         -s 4cif \ 
+                         -f image2 \ 
                          image-%3d.jpeg
 
 4cif options stands for the frame size 704x576. There are a variety of options that you can use.
@@ -342,18 +347,18 @@ Since, we are forcing 1 frame per second and the duration is only 4 seconds, the
 
 If you want to start the extraction from particular point, say 01:30:14 in the video for a specific duration(40 seconds), you can easily do it using the combination of '-ss' and '-t'. This should do it for you.
 
-    [shredder12]$ ffmpeg -i inputfile.avi \
-                         -r 1 \
-                         -t 40 \
-                         -ss 01:30:14 \
+    [shredder12]$ ffmpeg -i inputfile.avi \ 
+                         -r 1 \ 
+                         -t 40 \ 
+                         -ss 01:30:14 \ 
                          image-%d.jpeg
 
 You can even set the number of video frames to record using `-vframes` flag.
 
-    [shredder12]$ ffmpeg -i inputfile.avi \
-                         -r 1 \
-                         -vframes 120 \
-                         -ss 01:30:14 \
+    [shredder12]$ ffmpeg -i inputfile.avi \ 
+                         -r 1 \ 
+                         -vframes 120 \ 
+                         -ss 01:30:14 \ 
                          image-%d.jpeg
 
 This will record 120 frames of the video starting from 1:30:14 at 1frames per second. So, after 120 seconds, you should have 120 images.
@@ -366,10 +371,10 @@ You might need padding when you want to burn a video into a DVD widescreen forma
 
 Now, lets consider the same scenario, convert a video into widescreen 16:9 format. Suppose the video format we have is 1280x720 and no we want to padd it with bars on top and bottom to get the final aspect ration of the video as 4:3 i.e. resolution is 1280x960. In order to achieve this we will have to increase the height of the video by 240 pixels. We will use the following command to do that.
 
-    [shredder12]$ ffmpeg -i input.avi \
-                         -padtop 120 \
-                         -padbottom 120 \
-                         -padcolor 000000 \
+    [shredder12]$ ffmpeg -i input.avi \ 
+                         -padtop 120 \ 
+                         -padbottom 120 \ 
+                         -padcolor 000000 \ 
                          output.avi
 
 As it is already clear from the options, -padbottom means adding a 120px(height) bar at the bottom of the video and similarly we can use padleft and padright. Although there, the padding value will mean the width of the bar.

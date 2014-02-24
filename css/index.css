@@ -1,0 +1,200 @@
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.clr {
+  clear: both;
+  height: 0px;
+  line-height: 0px;
+}
+.clr-after {
+  clear: both;
+  height: 0px;
+  line-height: 0px;
+  display: block;
+  content: "";
+}
+#sky {
+  padding: 20px;
+  background: #CCC;
+  border-bottom: 1px dashed #08F;
+}
+#sky .sky-wrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+#sky .sky-wrapper div {
+  float: left;
+}
+#sky .sky-wrapper ul {
+  float: right;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 32px;
+  line-height: 32px;
+}
+#sky .sky-wrapper ul li {
+  float: left;
+  border-left: 1px dotted #AAA;
+}
+#sky .sky-wrapper ul li a {
+  display: inline-block;
+  padding: 0 10px;
+  text-decoration: none;
+  color: #666;
+  font-size: 16px;
+}
+#sky .sky-wrapper ul li a:hover {
+  color: #333;
+  background-color: #DDD;
+}
+#sky .sky-wrapper ul:after {
+  clear: both;
+  height: 0px;
+  line-height: 0px;
+  display: block;
+  content: "";
+}
+#sky .sky-wrapper:after {
+  clear: both;
+  height: 0px;
+  line-height: 0px;
+  display: block;
+  content: "";
+}
+#sky .logo {
+  background: url(zozoh_32.png) no-repeat;
+  width: 32px;
+  height: 32px;
+}
+#sky .title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #999;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+}
+#arena {
+  width: 600px;
+  margin: 10px auto;
+}
+body,
+font,
+td,
+form,
+p {
+  font-family: arial, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0px;
+}
+body {
+  margin: 0;
+}
+#zdocContent {
+  width: 62%;
+  min-width: 600px;
+  margin: auto;
+}
+#zdocContent p {
+  margin: 10px 50px;
+}
+#zdocContent blockquote {
+  border-left: 3px solid #CCC;
+  margin: 10px 60px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #888;
+}
+#zdocContent blockquote p {
+  margin: 0px;
+}
+#zdocContent i {
+  color: #666;
+}
+#zdocContent .doc-title {
+  font-size: 28px;
+  font-weight: bold;
+  padding: 16px;
+  padding-top: 30px;
+  text-align: center;
+}
+#zdocContent .doc-info {
+  font-size: 9px;
+  text-align: right;
+  background: #EEE;
+  margin: 10px 10px 20px 10px;
+  padding: 8px 20px;
+}
+#zdocContent .doc-info i,
+#zdocContent .doc-info em,
+#zdocContent .doc-info b {
+  font-style: normal;
+  color: #AAA;
+}
+#zdocContent h1 {
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 2px;
+  padding: 5px;
+  padding-left: 10px;
+}
+#zdocContent h2 {
+  color: #00C;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 2px;
+  margin: 5px;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 50px;
+}
+#zdocContent h3,
+#zdocContent h4,
+#zdocContent h5,
+#zdocContent h6 {
+  color: #000000;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 2px;
+  margin-left: 40px;
+  padding: 2px;
+}
+#zdocContent table {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 40px;
+}
+#zdocContent pre {
+  color: #126;
+  font-family: Courier New;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0px;
+  padding: 10px;
+  margin-left: 60px;
+  background-color: #EEE;
+}
+#zdocContent code {
+  color: #621;
+  background: #FFD;
+  border: 1px solid #CCC;
+  margin: 0 2px;
+  padding: 0 4px;
+}
+#zdocContent ul,
+#zdocContent ol {
+  margin-left: 50px;
+  padding-left: 30px;
+}
+#zdocContent ul ul,
+#zdocContent ul ol,
+#zdocContent ol ol,
+#zdocContent ol ul {
+  margin-left: 10px;
+  padding-left: 10px;
+}
