@@ -1,40 +1,40 @@
-#zdocContent p {
-  margin: 10px 50px;
-}
-#zdocContent blockquote {
-  border-left: 3px solid #CCC;
-  margin: 10px 60px;
-  padding: 4px 10px;
-  font-size: 12px;
-  color: #888;
-}
-#zdocContent blockquote p {
-  margin: 0px;
-}
-#zdocContent i {
-  color: #666;
-}
-#zdocContent .doc-title {
+.doc-title {
   font-size: 28px;
   font-weight: bold;
   padding: 16px;
   padding-top: 30px;
   text-align: center;
 }
-#zdocContent .doc-info {
+.doc-info {
   font-size: 9px;
   text-align: right;
   background: #EEE;
   margin: 10px 10px 20px 10px;
   padding: 8px 20px;
 }
-#zdocContent .doc-info i,
-#zdocContent .doc-info em,
-#zdocContent .doc-info b {
+.doc-info i,
+.doc-info em,
+.doc-info b {
   font-style: normal;
   color: #AAA;
 }
-#zdocContent h1 {
+.doc-content p {
+  margin: 10px 50px;
+}
+.doc-content blockquote {
+  border-left: 3px solid #CCC;
+  margin: 10px 60px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #888;
+}
+.doc-content blockquote p {
+  margin: 0px;
+}
+.doc-content i {
+  color: #666;
+}
+.doc-content h1 {
   color: #000;
   font-size: 20px;
   font-weight: bold;
@@ -42,7 +42,7 @@
   padding: 5px;
   padding-left: 10px;
 }
-#zdocContent h2 {
+.doc-content h2 {
   color: #00C;
   font-size: 16px;
   font-weight: bold;
@@ -52,10 +52,10 @@
   margin-left: 30px;
   margin-right: 50px;
 }
-#zdocContent h3,
-#zdocContent h4,
-#zdocContent h5,
-#zdocContent h6 {
+.doc-content h3,
+.doc-content h4,
+.doc-content h5,
+.doc-content h6 {
   color: #000000;
   font-size: 14px;
   font-weight: bold;
@@ -63,12 +63,12 @@
   margin-left: 40px;
   padding: 2px;
 }
-#zdocContent table {
+.doc-content table {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 40px;
 }
-#zdocContent pre {
+.doc-content pre {
   color: #126;
   font-family: Courier New;
   font-size: 12px;
@@ -78,22 +78,22 @@
   margin-left: 60px;
   background-color: #EEE;
 }
-#zdocContent code {
+.doc-content code {
   color: #621;
   background: #FFD;
   border: 1px solid #CCC;
   margin: 0 2px;
   padding: 0 4px;
 }
-#zdocContent ul,
-#zdocContent ol {
+.doc-content ul,
+.doc-content ol {
   margin-left: 50px;
   padding-left: 30px;
 }
-#zdocContent ul ul,
-#zdocContent ul ol,
-#zdocContent ol ol,
-#zdocContent ol ul {
+.doc-content ul ul,
+.doc-content ul ol,
+.doc-content ol ol,
+.doc-content ol ul {
   margin-left: 10px;
   padding-left: 10px;
 }

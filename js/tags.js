@@ -1,1 +1,5 @@
-tags.js
+(function($){
+$(document).ready(function(){
+
+});
+})(window.jQuery);

@@ -1,5 +1,7 @@
 ---
 title: 背叛图灵的人
+author:
+- zozoh (zozohtnt@gmail.com)
 tags:
 - 翻译
 - 科幻小说
@@ -10,7 +12,6 @@ tags:
 > "人们在哪儿？" 穿呢子大衣的人转过脸来。“跑了，“他说，声音低如耳语。“都跑了”
 
 ![Alan Turing statue. Credit: Wikimedia](alan_turing.jpg)
------------------------------------------------
 
 **"这不是我的手，"** 阿诺德(*Arnold*)说。
 
