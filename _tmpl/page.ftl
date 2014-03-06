@@ -6,8 +6,11 @@
     <link rel="stylesheet" type="text/css" href="${doc.bpath}css/page.css">
 </head>
 <body>
-    <div class="doc-title">${doc.title}</div>
-    <#include "lib:docinfo.ftl">
-    <div class="doc-content">${doc.content}</div>
+    <#include "lib:sky.ftl">
+    <div id="arena">
+        <div class="doc-title">${doc.title}</div>
+        <#include "lib:docinfo.ftl">
+        <div class="doc-content">${doc.content}</div>
+    </div>
 </body>
 </html>

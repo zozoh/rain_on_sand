@@ -1,7 +1,5 @@
-@import "base.less";
-@import "page.less";
-
-body {background-color:#EEE;}
+@import "_base.less";
+@import "_doc.less";
 
 .tag-content {
     background-color:#FFF;
@@ -16,4 +14,13 @@ body {background-color:#EEE;}
         a       {color:#000;text-decoration:none;}
         a:hover {color:#888;}
     }
+    
+    a.tag-action {
+        display:block;
+        background-color:#EEE;
+        color:#08F; text-decoration:none;
+        padding:4px 0;
+        text-align:center;
+    }
+    a.tag-action:hover {color:#6AF; background-color:#DDD;}
 }

@@ -1,4 +1,7 @@
 <div class="doc-info">
+    <#if doc.lm??>
+        <div class="doc-lm">${doc.lm?datetime}</div>
+    </#if>
     <#if doc.authors??>
         <div class="doc-authors">
             <#if (doc.authors?size)&gt;0><i>By:</i></#if>

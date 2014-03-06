@@ -17,6 +17,7 @@
         </div>
         <#include "lib:docinfo.ftl">
         <div class="doc-content">${doc.briefHtml}</div>
+        <a class="tag-action" href="${page.bpath}/${doc.rTargetPath}">阅读全文</a>
     </div>
     </#list>
 </div>
