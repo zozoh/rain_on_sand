@@ -13,11 +13,11 @@
     <#list tag.items as doc>
     <div class="tag-content">
         <div class="doc-title">
-            《<a href="${page.bpath}/${doc.rTargetPath}">${doc.title}</a>》
+            《<a href="${page.bpath}${doc.rTargetPath}">${doc.title}</a>》
         </div>
         <#include "lib:docinfo.ftl">
         <div class="doc-content">${doc.briefHtml}</div>
-        <a class="tag-action" href="${page.bpath}/${doc.rTargetPath}">阅读全文</a>
+        <a class="tag-action" href="${page.bpath}${doc.rTargetPath}">阅读全文</a>
     </div>
     </#list>
 </div>
