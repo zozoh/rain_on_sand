@@ -1,0 +1,54 @@
+#footer {
+    padding:20px;
+    margin:20px 0 0 0;
+    background:#999;
+    min-height:200px;
+    .footer-wrapper {
+        width:1000px;
+        margin:0 auto;
+        div {float:left;}
+        ul {
+            float:left;
+            margin:0;
+            padding:0;
+            list-style:none;
+            height:32px;
+            line-height:32px;
+            li {
+                float:left;
+                border-left:1px dotted #AAA;
+                a {
+                    display:inline-block;
+                    padding:0 10px;
+                    text-decoration:none;
+                    color:#666;
+                    font-size:16px;
+                }
+                a:hover {
+                    color:#333;
+                    background-color:#AAA;
+                }
+            }
+        }
+        ul:after {.clr-after;}
+        .copyright {
+            float:right;
+            color:#666;
+            font-size:11px;
+        }
+    }
+    .footer-wrapper:after {.clr-after;}
+    .logo {
+        background:url(zozoh_32.png) no-repeat;
+        width: 32px;
+        height: 32px;
+    }
+    .title {
+        font-size:24px;
+        font-weight: bold;
+        color:#666;
+        height:32px;
+        line-height: 32px;
+        padding:0 10px;
+    }
+}

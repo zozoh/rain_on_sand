@@ -94,6 +94,68 @@ body {
   margin: 0;
   background-color: #EEE;
 }
+#footer {
+  padding: 20px;
+  background: #CCC;
+  min-height: 200px;
+}
+#footer .footer-wrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+#footer .footer-wrapper div {
+  float: left;
+}
+#footer .footer-wrapper ul {
+  float: right;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 32px;
+  line-height: 32px;
+}
+#footer .footer-wrapper ul li {
+  float: left;
+  border-left: 1px dotted #AAA;
+}
+#footer .footer-wrapper ul li a {
+  display: inline-block;
+  padding: 0 10px;
+  text-decoration: none;
+  color: #666;
+  font-size: 16px;
+}
+#footer .footer-wrapper ul li a:hover {
+  color: #333;
+  background-color: #DDD;
+}
+#footer .footer-wrapper ul:after {
+  clear: both;
+  height: 0px;
+  line-height: 0px;
+  display: block;
+  content: "";
+}
+#footer .sky-wrapper:after {
+  clear: both;
+  height: 0px;
+  line-height: 0px;
+  display: block;
+  content: "";
+}
+#footer .logo {
+  background: url(zozoh_32.png) no-repeat;
+  width: 32px;
+  height: 32px;
+}
+#footer .title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #999;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+}
 #zdocContent {
   width: 62%;
   min-width: 600px;

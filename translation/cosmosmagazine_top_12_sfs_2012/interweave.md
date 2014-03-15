@@ -11,7 +11,6 @@ tags:
 > 我认为这是艺术的最终形式。
 
 ![Credit: Jamie Tufrey](interweave_cropped.jpg)
------------------------------------------------
 
 墨西哥城西一百二十公里，马德雷山脉(Sierra Madre)崎岖的森林之中，
 生态旅游者成群结队在 *iStuds* 和其他的 *ejewelry* 上记录着事件。

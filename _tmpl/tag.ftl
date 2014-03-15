@@ -17,9 +17,10 @@
         </div>
         <#include "lib:docinfo.ftl">
         <div class="doc-content">${doc.briefHtml}</div>
-        <a class="tag-action" href="${page.bpath}${doc.rTargetPath}">阅读全文</a>
+        <a class="tag-action" href="${page.bpath}${doc.rTargetPath}">阅读全文&gt;&gt;</a>
     </div>
     </#list>
 </div>
+<#include "lib:footer.ftl">
 </body>
 </html>

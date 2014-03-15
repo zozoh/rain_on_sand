@@ -94,6 +94,74 @@ body {
   margin: 0;
   background-color: #EEE;
 }
+#footer {
+  padding: 20px;
+  margin: 20px 0 0 0;
+  background: #999;
+  min-height: 200px;
+}
+#footer .footer-wrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+#footer .footer-wrapper div {
+  float: left;
+}
+#footer .footer-wrapper ul {
+  float: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 32px;
+  line-height: 32px;
+}
+#footer .footer-wrapper ul li {
+  float: left;
+  border-left: 1px dotted #AAA;
+}
+#footer .footer-wrapper ul li a {
+  display: inline-block;
+  padding: 0 10px;
+  text-decoration: none;
+  color: #666;
+  font-size: 16px;
+}
+#footer .footer-wrapper ul li a:hover {
+  color: #333;
+  background-color: #AAA;
+}
+#footer .footer-wrapper ul:after {
+  clear: both;
+  height: 0px;
+  line-height: 0px;
+  display: block;
+  content: "";
+}
+#footer .footer-wrapper .copyright {
+  float: right;
+  color: #666;
+  font-size: 11px;
+}
+#footer .footer-wrapper:after {
+  clear: both;
+  height: 0px;
+  line-height: 0px;
+  display: block;
+  content: "";
+}
+#footer .logo {
+  background: url(zozoh_32.png) no-repeat;
+  width: 32px;
+  height: 32px;
+}
+#footer .title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #666;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+}
 .doc-title {
   font-size: 28px;
   font-weight: bold;
@@ -102,22 +170,47 @@ body {
   text-align: center;
 }
 .doc-info {
-  font-size: 9px;
-  text-align: right;
-  background: #EEE;
-  margin: 10px 10px 20px 10px;
+  margin: 10px;
   padding: 8px 20px;
 }
-.doc-info i,
-.doc-info em,
-.doc-info b {
-  font-style: normal;
-  color: #AAA;
-}
 .doc-info .doc-lm {
+  font-size: 9px;
   float: left;
   color: #CCC;
   font-family: Times;
+}
+.doc-info .doc-tags {
+  float: left;
+}
+.doc-info .doc-tags a {
+  vertical-align: top;
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #AAF;
+}
+.doc-info .doc-tags a:before {
+  color: #DDD;
+  vertical-align: top;
+  display: inline-block;
+  content: "|";
+  margin-right: 8px;
+  overflow: hidden;
+}
+.doc-info .doc-tags a:hover {
+  text-decoration: underline;
+  color: #00F;
+}
+.doc-info .doc-au {
+  font-size: 9px;
+  float: right;
+}
+.doc-info .doc-au i,
+.doc-info .doc-au em,
+.doc-info .doc-au b {
+  font-style: normal;
+  color: #AAA;
 }
 .doc-info:after {
   clear: both;
@@ -136,11 +229,25 @@ body {
   font-size: 12px;
   color: #888;
 }
+.doc-content .doc-img {
+  text-align: center;
+  padding: 10px 0;
+}
+.doc-content .doc-img img {
+  border-radius: 6px;
+}
 .doc-content blockquote p {
   margin: 0px;
 }
 .doc-content i {
   color: #666;
+}
+.doc-content .doc-hr {
+  margin: 20px 10px;
+  height: 1px;
+  line-height: 1px;
+  overflow: hidden;
+  border-top: 1px dashed #CCC;
 }
 .doc-content h1 {
   color: #000;
