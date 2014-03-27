@@ -1,11 +1,7 @@
 <div id="sky">
     <div class="sky-wrapper">
         <div class="logo"></div>
-        <div class="title">
-            ${siteTitle}
-            &gt;
-            <b>${page.title}</b>
-        </div>
+        <div class="title">${siteTitle}</div>
         <ul class="others">
             <li><a href="${page.bpath}tags/others.html">${othersTag.text}</a></li>
         </ul>

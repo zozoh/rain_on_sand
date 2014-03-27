@@ -9,24 +9,31 @@
             </#list>
         </div>
     </#if>
-    <#if doc.authors??>
-        <div class="doc-au doc-authors">
-            <#if (doc.authors?size)&gt;0><i>By:</i></#if>
-            <#list doc.authors as au>
-            <span class="doc-aui doc-author">
-                <b>${au.name}</b>
-                <#if (au.email)??><em>${au.email}</em></#if>
+    
+    <#if doc.verifiers??>
+        <div class="doc-au doc-verifiers">
+            <#if (doc.verifiers?size)&gt;0><i>校验:</i></#if>
+            <#list doc.verifiers as au>
+            <span class="doc-aui doc-verif">
+                <#if (au.email)??>
+                    <a href="mailto:${au.email}">${au.name}</a>
+                <#else>
+                    <b>${au.name}</b>
+                </#if>
             </span>
             </#list>
         </div>
     </#if>
-    <#if doc.verifiers??>
-        <div class="doc-au doc-verifiers">
-            <#if (doc.verifiers?size)&gt;0><i>By:</i></#if>
-            <#list doc.verifiers as au>
-            <span class="doc-aui doc-verifiers">
-                <b>${au.name}</b>
-                <#if (au.email)??><em>${au.email}</em></#if>
+    <#if doc.authors??>
+        <div class="doc-au doc-authors">
+            <#if (doc.authors?size)&gt;0><i>作者:</i></#if>
+            <#list doc.authors as au>
+            <span class="doc-aui doc-author">
+                <#if (au.email)??>
+                    <a href="mailto:${au.email}">${au.name}</a>
+                <#else>
+                    <b>${au.name}</b>
+                </#if>
             </span>
             </#list>
         </div>

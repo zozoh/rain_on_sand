@@ -205,6 +205,7 @@ body {
 .doc-info .doc-au {
   font-size: 9px;
   float: right;
+  padding: 0 10px;
 }
 .doc-info .doc-au i,
 .doc-info .doc-au em,
@@ -243,7 +244,7 @@ body {
   color: #666;
 }
 .doc-content .doc-hr {
-  margin: 20px 10px;
+  margin: 16px 20px;
   height: 1px;
   line-height: 1px;
   overflow: hidden;
@@ -255,14 +256,15 @@ body {
   font-weight: bold;
   margin: 2px;
   padding: 5px;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 .doc-content h2 {
   color: #00C;
   font-size: 16px;
   font-weight: bold;
-  padding: 2px;
-  margin: 30px 0 8px 20px;
+  margin: 2px;
+  padding: 5px;
+  padding-left: 40px;
 }
 .doc-content h3,
 .doc-content h4,
@@ -271,8 +273,9 @@ body {
   color: #000000;
   font-size: 14px;
   font-weight: bold;
-  margin: 20px 0 6px 40px;
-  padding: 2px;
+  margin: 2px;
+  padding: 5px;
+  padding-left: 60px;
 }
 .doc-content table {
   margin-top: 10px;

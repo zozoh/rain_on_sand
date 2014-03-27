@@ -96,7 +96,8 @@ body {
 }
 #footer {
   padding: 20px;
-  background: #CCC;
+  margin: 20px 0 0 0;
+  background: #999;
   min-height: 200px;
 }
 #footer .footer-wrapper {
@@ -107,7 +108,7 @@ body {
   float: left;
 }
 #footer .footer-wrapper ul {
-  float: right;
+  float: left;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -127,7 +128,7 @@ body {
 }
 #footer .footer-wrapper ul li a:hover {
   color: #333;
-  background-color: #DDD;
+  background-color: #AAA;
 }
 #footer .footer-wrapper ul:after {
   clear: both;
@@ -136,7 +137,12 @@ body {
   display: block;
   content: "";
 }
-#footer .sky-wrapper:after {
+#footer .footer-wrapper .copyright {
+  float: right;
+  color: #666;
+  font-size: 11px;
+}
+#footer .footer-wrapper:after {
   clear: both;
   height: 0px;
   line-height: 0px;
@@ -151,7 +157,7 @@ body {
 #footer .title {
   font-size: 24px;
   font-weight: bold;
-  color: #999;
+  color: #666;
   height: 32px;
   line-height: 32px;
   padding: 0 10px;

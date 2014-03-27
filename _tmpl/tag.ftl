@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-    <title>${page.title}</title>
+    <title>${page.title} - ${siteTitle}</title>
     <link rel="stylesheet" type="text/css" href="../css/tags.css">
     <script language="javascript" src="../js/jquery.js"></script>
     <script language="javascript" src="../js/tags.js"></script>
