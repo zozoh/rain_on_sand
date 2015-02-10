@@ -3,5 +3,4 @@
 	<doc path="jotting"        title="随笔"/>
 	<doc path="tech"           title="技术"/>
 	<doc path="translation"    title="翻译"/>
-	<doc path="nutz"           title="Nutz" doc-base="~/workspace/git/github/nutz/doc/zdoc"/>
 </doc>
